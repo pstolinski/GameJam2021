@@ -6,6 +6,9 @@ public class PlaceShips{
     public static String[][] playerBoard = new String[10][10];
     public static String[][] computerBoard = new String [10][10];
 
+    //PATRICK EDIT
+    public static Opponent o = new Opponent();
+
     public static int r;
     public static int c;
 
@@ -143,6 +146,7 @@ public class PlaceShips{
             }
 
         }
+        o.placeOpponentShips();
 
     }
 
