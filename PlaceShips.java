@@ -21,7 +21,9 @@ public class PlaceShips{
 
     public static Scanner sc = new Scanner(System.in);
 
-    public static void main(String[] args) throws InterruptedException {
+    public static Opponent oppo = new Opponent();
+
+    public static void start() throws InterruptedException {
 
         String message = "Welcome Aboard, Captain! |You've joined us just in time. |The Commie Japs are attacking Guam, |and we need your help!";
 
@@ -31,11 +33,11 @@ public class PlaceShips{
 
             if(character.equalsIgnoreCase("|")){
                 System.out.println("");
-                Thread.sleep(500);
+                Thread.sleep(0);//500
 
             }else {
                 System.out.print(message.charAt(p));
-                Thread.sleep(20);
+                Thread.sleep(0);//20
 
             }
         }
@@ -183,18 +185,28 @@ public class PlaceShips{
             }
 
         }
+        //this works as intended
+        oppo.placeOpponentShips();
 
     }
 
     public static void printBoard(){
-
+        System.out.println();
+        System.out.print("   ");
+        for(int i = 1; i <= 10; i++){
+            System.out.print(" "+ i + " ");
+        }
+        System.out.println();
         for(int i = 0; i < 10; i++){
-            for(int j = 0; j < 10; j++){
-
-                System.out.print(playerBoard[i][j]);
-
+            if(i != 9) {
+                System.out.print(" " + (i+1) + " ");
+            }else{
+                System.out.print((i+1) + " ");
             }
-            System.out.println("");
+            for(int j = 0; j < 10; j++){
+                System.out.print(playerBoard[i][j]);
+            }
+            System.out.println();
         }
 
     }
