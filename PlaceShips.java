@@ -208,7 +208,5 @@ public class PlaceShips{
             }
             System.out.println();
         }
-
     }
-
 }

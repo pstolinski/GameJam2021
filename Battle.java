@@ -3,10 +3,9 @@ import java.util.Random;
 
 public class Battle {
     private static boolean winner = false;
-    static String winna;
+    public static String winna;
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";
-    public static final String ANSI_BLUE = "\u001B[34m";
     static Scanner sc = new Scanner(System.in);
     static Random r = new Random();
     private static String [][] userGuesses = new String[PlaceShips.playerBoard.length][PlaceShips.playerBoard[0].length];
@@ -22,9 +21,8 @@ public class Battle {
         while(!winner){
             placeHumanMove();
             placeComputerMove();
-            printComputerGuess();
-            printGuesses();
             checkWin();
+            printGuesses();
         }
     }
 
@@ -54,46 +52,42 @@ public class Battle {
     }
 
     public static void placeComputerMove(){
-        //int rRow = r.nextInt(PlaceShips.playerBoard.length);
-        //int rCol = r.nextInt(PlaceShips.playerBoard[0].length);
-        int rCol = 0;
-        int rRow = r.nextInt(5);
+        int rRow = r.nextInt(PlaceShips.playerBoard.length);
+        int rCol = r.nextInt(PlaceShips.playerBoard[0].length);
         while(compGuesses[rRow][rCol].equals("[█]")) {
-            //rRow = r.nextInt(PlaceShips.playerBoard.length);
-            //rCol = r.nextInt(PlaceShips.playerBoard[0].length);
-             rCol = 0;
-             rRow = r.nextInt(5);
+            rRow = r.nextInt(PlaceShips.playerBoard.length);
+            rCol = r.nextInt(PlaceShips.playerBoard[0].length);
         }
         if(PlaceShips.playerBoard[rRow][rCol].equals("[█]")){
             System.out.println("You've been hit!");
-            PlaceShips.computerBoard[rRow][rCol] = "[ ]";
+            PlaceShips.playerBoard[rRow][rCol] = "[ ]";
         }
         compGuesses[rRow][rCol] = "[█]";
     }
 
     public static void checkWin(){
-        int playerCount = 0;
+        int pCount = 0;
         for(int i = 0; i < PlaceShips.playerBoard.length; i++){
             for(int j = 0; j < PlaceShips.playerBoard[0].length; j++){
                 if(PlaceShips.playerBoard[i][j].equals("[█]")){
-                    playerCount++;
+                    pCount++;
                 }
             }
         }
-        int computerCount = 0;
+
+        int cCount = 0;
         for(int i = 0; i < PlaceShips.computerBoard.length; i++){
             for(int j = 0; j < PlaceShips.computerBoard[0].length; j++){
                 if(PlaceShips.computerBoard[i][j].equals("[█]")){
-                    computerCount++;
+                    cCount++;
                 }
             }
         }
-        System.out.println("PLAYER COUNT: " + playerCount);
-        System.out.println("COMPUTER COUNT: " + computerCount);
-        if(playerCount == 0){
+        if(pCount == 0){
             winner = true;
             winna = "Computer";
-        } else if(computerCount == 0){
+        }
+        if(cCount == 0){
             winner = true;
             winna = "Player";
         }
@@ -118,27 +112,5 @@ public class Battle {
             }
             System.out.println();
         }
-    }
-
-    public static void printComputerGuess(){
-        System.out.println(ANSI_BLUE + "Here are computer guesses:");
-        System.out.println();
-        System.out.print("   ");
-        for(int i = 1; i <= 10; i++){
-            System.out.print(" "+ i + " ");
-        }
-        System.out.println();
-        for(int i = 0; i < 10; i++){
-            if(i != 9) {
-                System.out.print(" " + (i+1) + " ");
-            }else{
-                System.out.print((i+1) + " ");
-            }
-            for(int j = 0; j < 10; j++){
-                System.out.print(compGuesses[i][j]);
-            }
-            System.out.println();
-        }
-        System.out.println(ANSI_RESET);
     }
 }
