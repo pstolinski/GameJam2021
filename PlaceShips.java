@@ -6,11 +6,18 @@ public class PlaceShips{
     public static String[][] playerBoard = new String[10][10];
     public static String[][] computerBoard = new String [10][10];
 
-    //PATRICK EDIT
-    public static Opponent o = new Opponent();
-
     public static int r;
     public static int c;
+
+    public static int r1 = r+1;
+    public static int r2 = r1+1;
+    public static int r3 = r2+1;
+    public static int r4 = r3+1;
+
+    public static int c1 = c;
+    public static int c2 = c;
+    public static int c3 = c;
+    public static int c4 = c;
 
     public static Scanner sc = new Scanner(System.in);
 
@@ -77,16 +84,11 @@ public class PlaceShips{
 
     public static void playerPlaceShips(){
 
-        int r1 = r+1;
-        int r2 = r1+1;
-        int r3 = r2+1;
-        int r4 = r3+1;
-
         playerBoard[r][c] = "[█]";
-        playerBoard[r+1][c] = "[█]";
-        playerBoard[r+2][c] = "[█]";
-        playerBoard[r+3][c] = "[█]";
-        playerBoard[r+4][c] = "[█]";
+        playerBoard[r1][c1] = "[█]";
+        playerBoard[r2][c2] = "[█]";
+        playerBoard[r3][c3] = "[█]";
+        playerBoard[r4][c4] = "[█]";
 
         printBoard();
 
@@ -95,32 +97,67 @@ public class PlaceShips{
         if(set.equalsIgnoreCase("W")){
 
             r = r-1;
+            r1 = r1-1;
+            r2 = r2-1;
+            r3 = r3-1;
+            r4 = r4-1;
+
             createPlayerBoard();
             playerPlaceShips();
 
         }else if(set.equalsIgnoreCase("A")){
 
             c = c-1;
+            c1 = c1 - 1;
+            c2 = c2 - 1;
+            c3 = c3 - 1;
+            c4 = c4 - 1;
+
             createPlayerBoard();
             playerPlaceShips();
 
         }else if(set.equalsIgnoreCase("S")){
 
             r = r+1;
+            r1 = r1 + 1;
+            r2 = r2 + 1;
+            r3 = r3 + 1;
+            r4 = r4 + 1;
+
             createPlayerBoard();
             playerPlaceShips();
 
         }else if(set.equalsIgnoreCase("D")){
 
             c = c+1;
+            c1 = c1 + 1;
+            c2 = c2 + 1;
+            c3 = c3 + 1;
+            c4 = c4 + 1;
+
             createPlayerBoard();
             playerPlaceShips();
 
         }else if(set.equalsIgnoreCase("R")) {
 
-            int temp = c;
+            int temp1 = c;
+            int temp2 = c1;
+            int temp3 = c2;
+            int temp4 = c3;
+            int temp5 = c4;
+
             c = r;
-            r = temp;
+            c1 = r1;
+            c2 = r2;
+            c3 = r3;
+            c4 = r4;
+
+            r = temp1;
+            r1 = temp2;
+            r2 = temp3;
+            r3 = temp4;
+            r4 = temp5;
+
             createPlayerBoard();
             playerPlaceShips();
 
@@ -146,7 +183,6 @@ public class PlaceShips{
             }
 
         }
-        o.placeOpponentShips();
 
     }
 
