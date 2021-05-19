@@ -25,7 +25,8 @@ public class PlaceShips{
 
     public static void start() throws InterruptedException {
 
-        String message = "Welcome Aboard, Captain! |You've joined us just in time. |The Commie Japs are attacking Guam, |and we need your help!";
+        String message = "Welcome Aboard, Captain! |You've joined us just in time. |The Commie Japs are attacking Guam, |and we need your help! |" +
+                "The only ship left floating in our fleet is this aircraft carrier. |The enemy Japs have an entire fleet after you. Be smart about where you fire, Captain.";
 
         for(int p = 0; p < message.length(); p++){
 
@@ -33,11 +34,11 @@ public class PlaceShips{
 
             if(character.equalsIgnoreCase("|")){
                 System.out.println("");
-                Thread.sleep(0);//500
+                Thread.sleep(500);
 
             }else {
                 System.out.print(message.charAt(p));
-                Thread.sleep(0);//20
+                Thread.sleep(20);
 
             }
         }
